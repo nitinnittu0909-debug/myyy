@@ -1,0 +1,82 @@
+:root{
+  --card-w: 92%;
+  --max-w: 420px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+  background: radial-gradient(circle at 20% 10%, #220018 0%, #0b0010 45%, #000004 100%);
+  color:#fff;
+  overflow:hidden;
+  padding:18px;
+}
+
+/* hearts */
+.hearts{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.heart{
+  position:absolute;width:14px;height:14px;
+  background:radial-gradient(circle at 30% 30%, #ffbcd2 0%, #ff6b9d 60%);
+  transform:rotate(-45deg);
+  opacity:0.22;
+  border-radius:4px;
+  filter:blur(.2px);
+  animation:float linear infinite;
+}
+.heart:before,.heart:after{content:"";position:absolute;width:14px;height:14px;background:inherit;border-radius:50%}
+.heart:before{top:-7px;left:0}
+.heart:after{left:7px;top:0}
+@keyframes float{
+  0%{transform:translateY(0) rotate(-45deg) scale(1);opacity:.45}
+  100%{transform:translateY(-120vh) rotate(0deg) scale(1.3);opacity:0}
+}
+
+/* card */
+.wrap{position:relative;z-index:2;width:var(--card-w);max-width:var(--max-w);margin:auto;text-align:center}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius:18px;padding:28px 18px;
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:0 12px 30px rgba(0,0,0,0.6);
+  transform-origin:center;
+  transition:opacity .6s ease, transform .6s ease;
+  opacity:0; transform:translateY(8px) scale(.98);
+  backdrop-filter: blur(6px);
+}
+.card.show{opacity:1;transform:translateY(0) scale(1)}
+.title{font-size:18px;margin-bottom:6px;letter-spacing:.2px;color:#ffd9e6}
+.bubble{min-height:84px;display:flex;align-items:center;justify-content:center;padding:14px;border-radius:12px;font-size:16px;line-height:1.45}
+.bubble.light{background:linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));color:#fff}
+.bubble.accent{background:linear-gradient(90deg,#ffb3c9,#ff608f);color:#2a0014;font-weight:700}
+
+.controls{margin-top:16px;display:flex;gap:12px;justify-content:center;align-items:center}
+.btn{
+  -webkit-tap-highlight-color: transparent;
+  padding:10px 16px;border-radius:999px;border:none;font-weight:700;
+  cursor:pointer;background:rgba(255,255,255,0.06);color:#fff;backdrop-filter: blur(4px);
+  box-shadow:0 6px 18px rgba(0,0,0,0.45);
+}
+.btn.primary{background:linear-gradient(90deg,#ff7fa2,#ff4b7d);color:white}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+.btn:active{transform:translateY(2px)}
+
+/* small responsive adjustments */
+@media (max-width:420px){
+  .bubble{min-height:70px;font-size:18px;padding:12px}
+  .card{padding:22px 14px}
+  .title{font-size:16px}
+}
+
+/* watermark */
+.watermark{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:10px;font-size:12px;color:rgba(255,255,255,0.18);
+  z-index:5;pointer-events:none;font-weight:600;letter-spacing:0.4px
+}
+
+/* small flourish animation when button appears */
+.btn-bounce{animation:pop .45s cubic-bezier(.2,.9,.25,1)}
+@keyframes pop{0%{transform:scale(.9)}70%{transform:scale(1.05)}100%{transform:scale(1)}}
