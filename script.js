@@ -24,7 +24,7 @@ for(let i=0;i<HEARTS;i++){
 const messages = [
   {text:"Vaishnavi 💖", type:"light"},
   {text:"Tumse ek baat bolni hai...", type:"light"},
-  {text:"Darr lag raha he, bolu kya 😅", type:"light", waitForClick:true}, // show Haa button
+  {text:"Darr lag raha he, boludu kya 😅", type:"light", waitForClick:true}, // show Haa button
   {text:"Vooooo....", type:"light", extraDelay:VOOOO_EXTRA}, // big pause here
   {text:"I like you 💞", type:"accent"},
   {text:"Plz haan ya na kuch to bolna 😳", type:"light"},
